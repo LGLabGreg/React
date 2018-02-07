@@ -12,9 +12,6 @@ const MainNav = () => (
         <NavLink className="nav-link" to="/create">Create</NavLink>
       </li>
       <li className="nav-item">
-        <NavLink className="nav-link" to="/edit">Edit</NavLink>
-      </li>
-      <li className="nav-item">
         <NavLink className="nav-link" to="/help">Help</NavLink>
       </li>
     </ul>
