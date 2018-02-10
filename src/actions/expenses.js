@@ -18,15 +18,10 @@ export const addExpense = (
   }
 });
 
-export const editExpense = (id, {description, note, amount, createdAt}) =>  ({
+export const editExpense = (id, updates) =>  ({
   type: 'EDIT_EXPENSE',
-  expense: {
-    id: uuid(),
-    description,
-    note,
-    amount,
-    createdAt
-  }
+  id,
+  updates
 });
 
 export const removeExpense = ({ id } = {}) =>  ({
