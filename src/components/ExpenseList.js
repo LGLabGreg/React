@@ -2,20 +2,38 @@ import React from 'react';
 import { connect } from 'react-redux';
 import ExpenseListItem from './ExpenseListItem';
 import selectExpenses from '../selectors/expenses';
+import { startSetExpenses } from '../actions/expenses';
 
-const ExpenseList = (props) => (
-    <div>
+class ExpenseList extends React.Component {
+
+  componentDidMount() {
+    this.props.startSetExpenses();
+  }
+
+  render () {
+    return (
+      <div>
         <h1>Expense list</h1>
-        <ul>
-            {props.expenses.map((expense) => (
-                <ExpenseListItem key={expense.id} {...expense}/>
-            ))}
-        </ul>
-    </div>
-);
+        {
+          this.props.expenses.length ?
+            <ul>
+              {this.props.expenses.map((expense) => (
+                <ExpenseListItem key={expense.id} {...expense} />
+              ))}
+            </ul>
+            : 'No Expenses'
+        }
+      </div>
+    )
+  }
+}
 
 const mapStateToProps = (state) => ({
-    expenses: selectExpenses(state.expenses, state.filters)
+  expenses: selectExpenses(state.expenses, state.filters)
 });
 
-export default connect(mapStateToProps)(ExpenseList);
+const mapDispatchToProps = (dispatch) => ({
+  startSetExpenses: () => dispatch(startSetExpenses())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ExpenseList);

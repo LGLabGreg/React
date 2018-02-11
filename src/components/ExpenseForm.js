@@ -43,8 +43,8 @@ export default class ExpenseForm extends React.Component {
   }
 
   onInfoChange = (e) => {
-    const info = e.target.value;
-    this.setState(() => ({ info }));
+    const note = e.target.value;
+    this.setState(() => ({ note }));
   }
 
   onSubmit = (e) => {

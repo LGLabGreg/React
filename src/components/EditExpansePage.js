@@ -1,7 +1,7 @@
 import React from 'react';
 import ExpenseForm from './ExpenseForm';
 import { connect } from 'react-redux';
-import { editExpense, removeExpense } from '../actions/expenses';
+import { startEditExpense, startRemoveExpense } from '../actions/expenses';
 
 const EditExpansePage = (props) => (
   
@@ -10,12 +10,12 @@ const EditExpansePage = (props) => (
     <ExpenseForm
       expense={props.expense}
       onSubmit={(expense) => {
-        props.dispatch(editExpense(props.match.params.id, expense));
+        props.startEditExpense(props.match.params.id, expense);
         props.history.push('/');
       }}/>
     <button
       onClick={() => {
-        props.dispatch(removeExpense({ id: props.match.params.id }));
+        props.startRemoveExpense({ id: props.match.params.id });
         props.history.push('/');
       }}>Remove</button>
   </div>
@@ -26,4 +26,10 @@ const mapStateToProps = (state, props) => {
     expense: state.expenses.find((expense) => expense.id === props.match.params.id)
   }
 }
-export default connect(mapStateToProps)(EditExpansePage);
+
+const mapDispatchToProps = (dispatch) => ({
+  startEditExpense: (id, updates) => dispatch(startEditExpense(id, updates)),
+  startRemoveExpense: ({ id }) => dispatch(startRemoveExpense({ id }))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditExpansePage);
