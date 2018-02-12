@@ -3,6 +3,7 @@
   "description": "",
   "dependencies": {
     "firebase": "^4.9.1",
+    "history": "^4.7.2",
     "lodash": "^4.17.5",
     "moment": "^2.20.1",
     "react": "16.1.1",
